@@ -3,3 +3,34 @@
     float: right;
     margin-top:50px;
 }
+.categories {
+    margin-left:auto;
+    margin-right:auto;
+    Text-align:center;
+}
+.chooseCategories {
+    margin-left:5px;
+}
+.chooseCategories button {
+    border:none;
+    margin:5px 0px 0px 0px;
+    cursor:pointer;
+    font-size:18px;
+    opacity:0.85;
+}
+.chooseCategories button:hover {
+    opacity:1;
+}
+.nightmode {
+    background-image: url("../night.jpg");
+}
+.nightBox {
+    background: #333;
+}
+.nighth1 {
+    color:white;
+    text-shadow:1px 1px 1px black;
+}
+.nightcity {
+    color:red;
+}

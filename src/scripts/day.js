@@ -10,8 +10,7 @@ function Day(props) {
     let day = props.item.date;
     let fDay = day.length;
     let summary = day.slice(fDay-5, fDay);
-    console.log(props)
-
+   
     let tempValue = '';
 
     if(props.tempValue === "celsjusz") {
