@@ -3,6 +3,7 @@ import React from "react"
 import Box from "./scripts/box"
 
 
+
 class App extends React.Component {
 
   constructor() {
@@ -37,12 +38,15 @@ class App extends React.Component {
 
     let alertDiv =''
 
-    if(bool === true) {
-      console.log("working")
-      alertDiv = <div style={{color: "red"}}>There is no city named that in our base</div>
-    }else {
-      alertDiv = '';
+    if(bool) {
+      alertDiv = <div className="alert">There is no city named that in our base</div>
     }
+    else {
+      alertDiv = ''
+    }
+      
+     
+
 
   
 
@@ -55,11 +59,15 @@ class App extends React.Component {
 
     let grabValue = document.querySelector("#city").value;
     this.setState({city: grabValue})
+    let grabField = document.querySelector('#city')
+    grabField.focus()
+    grabField.select()
 
     if(param) {
       grabValue = param;
     }
-    
+    grabValue = grabValue.toLowerCase()
+
 
     fetch('http://api.weatherapi.com/v1/forecast.json?key=60264f8c99b942ea8d5111232211708&q='+grabValue+'&days=3&aqi=no&alerts=no', {
         
@@ -76,11 +84,19 @@ class App extends React.Component {
       
     }) 
     .then(data => { 
-      this.setState({fetchedData: data})
+      
+      if(data.hasOwnProperty("error")) {
+        this.alert(true)
+      } else {
+        this.setState({fetchedData: data})
+        this.alert(false)
+      }
+
+      
+     
     })
     .catch((error) => {
-      console.log("error")
-      this.alert()
+      console.log(error)
     })
 
 
@@ -93,6 +109,7 @@ class App extends React.Component {
       
       if(this.state.temperature === "celsjusz") {
         this.setState({temperature: "fahrenheit"})
+        
         
       } else if(this.state.temperature === "fahrenheit"){
         this.setState({temperature: "celsjusz"})
@@ -132,10 +149,10 @@ class App extends React.Component {
 
     render() {
 
-      
+      let settings = ''
     
-
-      let settings = 
+      if(this.state.settings) {
+        settings = 
         <div className="boxSettings">
           <div className="Settings">
             <button className="exit" onClick={ () => this.openSettings()}>X</button>
@@ -190,6 +207,8 @@ class App extends React.Component {
           </div>
 
       </div>
+      }
+      
 
     
 
@@ -211,31 +230,37 @@ class App extends React.Component {
 
 
         // Night mode
-          if(this.state.nightmode) {
+          if(this.state.nightmode === "on") {
             nightOn.style.color = "#30689F"
+            nightOn.style.textShadow = "0.5px 0.5px 0.5px black"
             nightOff.style.color = "gray"
-          } else if (this.state.nightmode === false) {
+          } else if (this.state.nightmode === "off") {
             nightOff.style.color = "#30689F"
+            nightOff.style.textShadow = "0.5px 0.5px 0.5px black"
             nightOn.style.color = "gray"
           }
         
   
           if(this.state.windValue === "km") {
             colorWind.style.color = "#30689F"
+            colorWind.style.textShadow = "0.5px 0.5px 0.5px black"
             colorWind2.style.color = "gray"
           } else if (this.state.windValue === "mi") {
             document.querySelector('.windCheck').checked = true
             colorWind2.style.color = "#30689F"
+            colorWind2.style.textShadow = "0.5px 0.5px 0.5px black"
             colorWind.style.color = "gray"
           }
   
           if(this.state.temperature === "celsjusz") {
             colorTemp.style.color = "#30689F"
+            colorTemp.style.textShadow = "0.5px 0.5px 0.5px black"
             colorTemp2.style.color = "gray"
           } else if (this.state.temperature === "fahrenheit") {
             // setting colors and checked
             document.querySelector('.TempCheck').checked = true
             colorTemp2.style.color = "#30689F"
+            colorTemp2.style.textShadow = "0.5px 0.5px 0.5px black"
             colorTemp.style.color = "gray"
           }
 
@@ -250,8 +275,9 @@ class App extends React.Component {
 
       let showIcon = ''
 
-      
-      if(this.state.fetchedData) {
+     
+
+      if(this.state.fetchedData && !this.state.fetchedData.error) {
 
           let backgroundStyle= ''
           let shortCutW = this.state.fetchedData.current.condition.text;
@@ -276,7 +302,7 @@ class App extends React.Component {
             backgroundStyle= "cloud"
           }
          
-
+          
           
 
           showIcon = <Box 
@@ -289,10 +315,11 @@ class App extends React.Component {
           temperature={this.state.temperature}
           windValue={this.state.windValue}
           nightmode={this.state.nightmode}
+          setDay={0}
           />
 
-          if(this.state.settings) {
-            showIcon = settings 
+          if(!this.state.settings) {
+            settings = ''
           }
 
 
@@ -300,7 +327,16 @@ class App extends React.Component {
       else {
         showIcon= ''
       }
-     
+      
+
+      // enter to submit
+      let handleKeyPress = '';
+      handleKeyPress = (event) => {
+          if(event.key === "Enter") {
+            let grabValue = document.querySelector('#city').value
+            this.searchCity(grabValue)
+          }
+      }
 
       return (
         <div className="App">
@@ -311,7 +347,7 @@ class App extends React.Component {
               
             
 
-                <input name="city" id="city" type="text" placeholder=" Just type" />
+                <input name="city" id="city" type="text" placeholder=" Just type" onKeyPress= { (e) => handleKeyPress(e)} />
 
                 {this.state.alert}
 
@@ -322,6 +358,7 @@ class App extends React.Component {
             
             
             {showIcon}
+            {settings}
                 
             
 

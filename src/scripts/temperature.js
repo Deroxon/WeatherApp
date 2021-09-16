@@ -64,6 +64,7 @@ class Temperature extends React.Component {
 
     render() {
 
+      
         
             let shorter = this.props.temperature.forecast.forecastday[this.props.day]
             let kos = shorter.hour.slice(this.state.startHour, this.state.endHour)
@@ -80,7 +81,7 @@ class Temperature extends React.Component {
                 let leng = time.length;
                 let summary = time.slice(leng-5, leng);
 
-                
+               
 
                 if(this.props.tempValue === "celsjusz") {
                     valueOfTemp = item.temp_c + "℃"

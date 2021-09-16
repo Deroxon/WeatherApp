@@ -2,6 +2,7 @@
     display: inline-flex;
     float: right;
     margin-top:50px;
+    
 }
 .categories {
     margin-left:auto;
@@ -15,7 +16,7 @@
     border:none;
     margin:5px 0px 0px 0px;
     cursor:pointer;
-    font-size:18px;
+    font-size:16px;
     opacity:0.85;
 }
 .chooseCategories button:hover {
@@ -28,7 +29,7 @@
     background: #333;
 }
 .nighth1 {
-    color:white;
+    color:rgba(230, 220, 220, 0.8);
     text-shadow:1px 1px 1px black;
 }
 .nightcity {

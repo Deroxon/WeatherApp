@@ -91,7 +91,7 @@ class Wind extends React.Component {
                 return (
                     <ul>
                         <li>{summary}</li>
-                        <li><img src={item.condition.icon} /> </li>
+                        <li><img src={item.condition.icon} alt="" /> </li>
                         <li>{wind}</li>
                     </ul>
                 )

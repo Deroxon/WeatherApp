@@ -82,6 +82,9 @@
     margin:5px;
     transform: rotate(180deg);
 }
+.squares {
+    display: inline-block;
+}
 .square {
     width:100%;
 }
@@ -99,13 +102,19 @@
 }
 
 
-@media screen and (max-width: 1060px) {
+@media screen and (max-width: 1291px) {
     .alphaSquare {
         width:20px;
     }
     .listed li{
         
         margin:3px;
+    }
+}
+@media screen and (max-width: 770px) {
+    .alphaSquare {
+        width:15px;
+        
     }
 }
 
