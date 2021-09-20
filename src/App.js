@@ -1,7 +1,7 @@
 import './App.css';
 import React from "react"
 import Box from "./scripts/box"
-import $ from "jquery"
+
 
 
 
