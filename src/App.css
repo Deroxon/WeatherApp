@@ -175,8 +175,10 @@ button:hover {
 
 
 .boxSettings {
-  min-width:100vw;
-  min-height:100vh;
+  min-width:625px;
+  min-height: 1500px;
+  width:100vw;
+  height: 100vh;
   position: absolute;
   display:inline-block;
   grid-column-start: 2;
