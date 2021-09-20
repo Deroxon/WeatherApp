@@ -1,6 +1,7 @@
 import './App.css';
 import React from "react"
 import Box from "./scripts/box"
+import $ from "jquery"
 
 
 
@@ -21,6 +22,9 @@ class App extends React.Component {
     this.searchCity = this.searchCity.bind(this)
     this.openSettings = this.openSettings.bind(this)
   }
+ 
+
+  
 
   componentDidUpdate(prevState,prevProps) {
     if(prevState.temperature !== this.state.temperature) {
@@ -231,35 +235,35 @@ class App extends React.Component {
 
         // Night mode
           if(this.state.nightmode === "on") {
-            nightOn.style.color = "#30689F"
+            nightOn.style.color = "#87CEEB"
             nightOn.style.textShadow = "0.5px 0.5px 0.5px black"
             nightOff.style.color = "gray"
           } else if (this.state.nightmode === "off") {
-            nightOff.style.color = "#30689F"
+            nightOff.style.color = "#87CEEB"
             nightOff.style.textShadow = "0.5px 0.5px 0.5px black"
             nightOn.style.color = "gray"
           }
         
   
           if(this.state.windValue === "km") {
-            colorWind.style.color = "#30689F"
+            colorWind.style.color = "#87CEEB"
             colorWind.style.textShadow = "0.5px 0.5px 0.5px black"
             colorWind2.style.color = "gray"
           } else if (this.state.windValue === "mi") {
             document.querySelector('.windCheck').checked = true
-            colorWind2.style.color = "#30689F"
+            colorWind2.style.color = "#87CEEB"
             colorWind2.style.textShadow = "0.5px 0.5px 0.5px black"
             colorWind.style.color = "gray"
           }
   
           if(this.state.temperature === "celsjusz") {
-            colorTemp.style.color = "#30689F"
+            colorTemp.style.color = "#87CEEB"
             colorTemp.style.textShadow = "0.5px 0.5px 0.5px black"
             colorTemp2.style.color = "gray"
           } else if (this.state.temperature === "fahrenheit") {
             // setting colors and checked
             document.querySelector('.TempCheck').checked = true
-            colorTemp2.style.color = "#30689F"
+            colorTemp2.style.color = "#87CEEB"
             colorTemp2.style.textShadow = "0.5px 0.5px 0.5px black"
             colorTemp.style.color = "gray"
           }
@@ -352,6 +356,7 @@ class App extends React.Component {
                 {this.state.alert}
 
                 <input type="button" id="searchButton" onClick={ () =>this.searchCity()} value="Search"  />
+                
 
             </header>
 

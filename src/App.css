@@ -124,6 +124,7 @@ opacity: 0.8;
   font-weight: 700;
   text-shadow: 1px 1px 1px black;
 }
+
 .cityDisplayed {
   font-size:25px;
   color:white;
@@ -174,19 +175,16 @@ button:hover {
 
 
 .boxSettings {
-  margin-top:20px;
-  min-width:400px;
-  min-height:400px;
-  position: relative;
-  margin-top:-470px;
+  min-width:100vw;
+  min-height:100vh;
+  position: absolute;
   display:inline-block;
   grid-column-start: 2;
   grid-column-end: 10;
   border-radius:5px;
   background:rgb(78, 77, 77);
-  opacity: 1;
+  opacity: 0.98;
   text-align: center;
-  
   font-weight:600
 }
 .Settings ul {
@@ -281,14 +279,18 @@ input:checked + .slider:before {
   header {
     grid-column-start: 1;
     grid-column-end: 11;
-    min-width:500px;
+    min-width:615px;
+  }
+  
+  .todaySection ul li {
+    border-bottom: gray 0.5px solid;
   }
 }
 @media screen and ( max-width: 900px) {
 
  .box {
     width:100%;
-    min-width:500px;
+    min-width:615px;
     grid-column-start: 1;
     grid-column-end: 11;
     color:Red;
@@ -308,7 +310,7 @@ input:checked + .slider:before {
     font-size:20px;
   }
   .cityDisplayed {
-    font-size:25px
+    font-size:35px
   }
   .listed ul {
     font-size:25px;
@@ -333,3 +335,5 @@ input:checked + .slider:before {
   }
 
 }
+
+
